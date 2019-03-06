@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'welcome/index'
   resources :welcome
   resources :posts
@@ -6,4 +7,5 @@ Rails.application.routes.draw do
   resources :post do
     resources :comments
   end
+  root 'posts#index'
 end
