@@ -7,6 +7,10 @@
 	<strong>Text:</strong>
 	<%= @post.text %>
 </p>
+<p>image:
+	<%= image_tag @post.image.url %>
+</p>
+
 	<h2>Comments</h2>
 	<%= render @post.comments %>
 	<h2>Add a comment:</h2>
