@@ -16,17 +16,35 @@
     <% if alert %>
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
-    <p class="navbar-text pull-right">
-    <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.email %></strong>.
-      <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-      <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-      <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-      <% end %>
-    </p>
-    
-    <%= yield %>
+    <nav class="navbar navbar-expand-lg navbar-beige bg-dark fixed-top">
+      <div class="container">
+        <%= link_to 'My Blog', posts_path, class: 'navbar-brand' %>
+      </div>
+      <div class="row">
+        <div class="navbar-collapse collapse" id="navbarResponsive" style="">
+          <ul class="nav navbar-nav pull-right">
+            <li class="nav-item active">
+              <%= link_to 'New Post', new_post_path, class: 'nav-link' %>
+            </li>
+          </ul>
+          <% if user_signed_in? %>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+          <% else %>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="nav-item active">
+                <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link'%>
+              </li>      
+              <li class="nav-item active">
+                <%= link_to 'Login', new_post_path, class: 'nav-link' %>
+              </li>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+    <div class="container navbar-padding">
+      
+      <%= yield %>
+    </div>
   </body>
 </html>
